@@ -4,16 +4,23 @@
     <name>fitst-my-hello-world-plugin</name>
     <vendor>felix-qing</vendor>
     <description><![CDATA[
-        <p><b>fitst-my-hello-world-plugin</b> is a repository that provides a pure template to make it easier to create a new plugin project.</p>
-        <p>The main goal of this template is to speed up the setup phase of plugin development for both new and experienced developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping everything organized.</p>
+        <p>一个简单的 Hello World 插件示例。</p>
     ]]></description>
 
+    <!-- 依赖 IntelliJ 平台核心模块 -->
     <depends>com.intellij.modules.platform</depends>
+    <!-- 注册菜单动作 -->
+    <actions>
+        <action id="HelloWorldAction"
+                class="com.github.felixqing.fitstmyhelloworldplugin.HelloWorldAction"
+                text="Say Hello World"
+                description="弹出一个 Hello World 对话框">
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+            <!-- 放到 Tools 菜单最后 -->
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.felixqing.fitstmyhelloworldplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.felixqing.fitstmyhelloworldplugin.startup.MyProjectActivity" />
-    </extensions>
+            <!-- 快捷键：Ctrl + Shift + H -->
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift H"/>
+        </action>
+    </actions>
 </idea-plugin>
